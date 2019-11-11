@@ -7,17 +7,21 @@
 
 ##Enrich data
 # * add geographical coordinates to police station locations
-# * fix "x" and checkmark symbols in the reportage 
 # * check data analysis on drugarchive.ph, provide a data analysis not yet provided. 
         # -- NCR by city; nationwide by provice
         # -- chart of deaths by type incident
         # -- number of deaths by day
-
+        
+#UPDATES DONE:
+#INSTALLED PANDAS!
+#UPDATED DATA TO INCLUDE TYPE OF KILLING FOR ALL DATASETS! BASICALLY ADDED A COLUMN!
 
 
 
 import csv
+import pandas
 
+#CALOOCAN DATA
 with open('Caloocan_police.csv') as caloocan_police_data_input:
     caloocan_police_results = csv.reader(caloocan_police_data_input)
     
@@ -27,10 +31,13 @@ with open('Caloocan_police.csv') as caloocan_police_data_input:
         id_victim = row[0]
         date = row[1]
         location = row[2]
-        station = row[3]
-        type_killing = row[4]
-        print(date)
-        
+
+#Adding column so that type of killing is in the CSV
+output_Caloocan_police = pandas.read_csv('Caloocan_police.csv')
+output_Caloocan_police['Assailant'] = 'Police'
+print(output_Caloocan_police)
+
+
 with open('Caloocan_unidentified.csv') as caloocan_unidentified_data_input:
     caloocan_unidentified_results = csv.reader(caloocan_unidentified_data_input)
     
@@ -40,9 +47,12 @@ with open('Caloocan_unidentified.csv') as caloocan_unidentified_data_input:
         id_victim = row[0]
         date = row[1]
         location = row[2]
-        station = row[3]
-        type_killing = row[4]
-        print(date)
+
+output_Caloocan_unidentified = pandas.read_csv('Caloocan_unidentified.csv')
+output_Caloocan_unidentified['Assailant'] = 'Unidentified'
+print(output_Caloocan_unidentified)
+
+#QUEZON CITY DATA
 
 with open('QuezonCity_police.csv') as QuezonCity_police_data_input:
     QuezonCity_police_results = csv.reader(QuezonCity_police_data_input)
@@ -53,9 +63,10 @@ with open('QuezonCity_police.csv') as QuezonCity_police_data_input:
         id_victim = row[0]
         date = row[1]
         location = row[2]
-        station = row[3]
-        type_killing = row[4]
-        print(date)
+
+output_QuezonCity_police = pandas.read_csv('QuezonCity_police.csv')
+output_QuezonCity_police['Assailant'] = 'Police'
+print(output_QuezonCity_police)
         
 with open('QuezonCity_unidentified.csv') as QuezonCity_unidentified_data_input:
     QuezonCity_unidentified_results = csv.reader(QuezonCity_unidentified_data_input)
@@ -66,10 +77,12 @@ with open('QuezonCity_unidentified.csv') as QuezonCity_unidentified_data_input:
         id_victim = row[0]
         date = row[1]
         location = row[2]
-        station = row[3]
-        type_killing = row[4]
-        print(date)
-        
+
+output_QuezonCity_unidentified = pandas.read_csv('QuezonCity_unidentified.csv')
+output_QuezonCity_unidentified['Assailant'] = 'Unidentified'
+print(output_QuezonCity_unidentified)
+
+#MANILA DATA
 with open('Manila_police.csv') as Manila_police_data_input:
     Manila_police_results = csv.reader(Manila_police_data_input)
     
@@ -79,9 +92,10 @@ with open('Manila_police.csv') as Manila_police_data_input:
         id_victim = row[0]
         date = row[1]
         location = row[2]
-        station = row[3]
-        type_killing = row[4]
-        print(date)
+        
+output_Manila_police = pandas.read_csv('Manila_police.csv')
+output_Manila_police['Assailant'] = 'Police'
+print(output_Manila_police)
         
 with open('Manila_unidentified.csv') as Manila_unidentified_data_input:
     Manila_unidentified_results = csv.reader(Manila_unidentified_data_input)
@@ -92,6 +106,12 @@ with open('Manila_unidentified.csv') as Manila_unidentified_data_input:
         id_victim = row[0]
         date = row[1]
         location = row[2]
-        station = row[3]
-        type_killing = row[4]
-        print(date)
+        
+output_Manila_unidentified = pandas.read_csv('Manila_unidentified.csv')
+output_Manila_unidentified['Assailant'] = 'Unidentified'
+print(output_Manila_unidentified)
+
+#NEXT STEPS
+#pandas to add new row and populate rows with type of killing (police) (assailant)
+#do this with rest of data -- DONE
+#export all this stuff as a JSON file of data that I need for Tableau!
